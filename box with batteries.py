@@ -31,10 +31,10 @@ boxShape = Part.makeBox(wallLeftWidth, wallLeftDepth,
            wallLeftHeight, Base.Vector(LeftWall_X, 
            LeftWall_Y, LeftWall_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
-
 
 # Right side of the box (x, y, z)
 wallRightWidth = float(boxThickness)                    # Width (x)
@@ -55,10 +55,10 @@ boxShape = Part.makeBox(wallRightWidth, wallRightDepth,
            wallRightHeight, Base.Vector
            (RightWall_X, RightWall_Y, RightWall_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
-
 
 # Front of the box (x, y, z)
 wallAnteriortWidth = float((2*batteryWidth+
@@ -87,10 +87,10 @@ boxShape = Part.makeBox(wallAnteriortWidth,
            AnteriortWall_Y, 
            AnteriortWall_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
-
 
 # Back side of the box (x, y, z)
 wallPosteriorWidth = float((2*batteryWidth+
@@ -118,10 +118,10 @@ boxShape = Part.makeBox(wallPosteriorWidth,
            Base.Vector(PosteriorWall_X, 
            PosteriorWall_Y, PosteriorWall_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
-
 
 # The underside of the box (x, y, z)
 wallLowerWidth = float((2*batteryWidth+
@@ -148,7 +148,7 @@ boxShape = Part.makeBox(wallLowerWidth,
            wallLowerDepth, wallLowerHeight, 
            Base.Vector(LowerWall_X, 
            LowerWall_Y, LowerWall_Z)
-           )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -171,6 +171,7 @@ boxShape = Part.makeBox(batteryWidth,
            batteryDepth, batteryHeight, 
            Base.Vector(0, 0, 0)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -181,6 +182,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            (row1_cubeLocation_X, row1_cubeLocation_Y+
            row_betweenBattery, row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -191,6 +193,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            2*(row1_cubeLocation_Y)+row_betweenBattery*2, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -201,6 +204,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            3*(row1_cubeLocation_Y)+row_betweenBattery*3, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -211,6 +215,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            4*(row1_cubeLocation_Y)+row_betweenBattery*4, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -229,6 +234,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            row1_cubeLocation_Y+row_betweenBattery, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -239,6 +245,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            2*(row1_cubeLocation_Y)+row_betweenBattery*2, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form 
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -249,6 +256,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            3*(row1_cubeLocation_Y)+row_betweenBattery*3, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
@@ -259,6 +267,7 @@ boxShape = Part.makeBox(batteryWidth, batteryDepth,
            4*(row1_cubeLocation_Y)+row_betweenBattery*4, 
            row1_cubeLocation_Z)
            )
+
 # Object to display the form
 box = document.addObject('Part::Feature', 'Box')
 box.Shape = boxShape
