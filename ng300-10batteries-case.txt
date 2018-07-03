@@ -1,0 +1,407 @@
+import Part
+from FreeCAD import Base;
+from Draft import *;
+
+# Sodaniye of the document with a name (Sodaniye dokumenta s imenem)
+document = App.newDocument('FreeCAD filler test')
+
+class Box:
+    """ My box with batteries"""
+    def __init__(self, batteryWidth, batteryDepth, 
+                batteryHeight, row_betweenBattery, 
+                boxThickness, additionalHeight, 
+                rotation, x, y, z):
+        self.batteryWidth = batteryWidth
+        self.batteryDepth = batteryDepth
+        self.batteryHeight = batteryHeight
+        self.row_betweenBattery = row_betweenBattery
+        self.boxThickness = boxThickness
+        self.additionalHeight = additionalHeight
+        self.rotation = rotation
+        self.x = x
+        self.y = y
+        self.z = z
+
+        wallLeftWidth = float(boxThickness)                     # Width (Shirina) (x)
+        wallLeftDepth = float((5*(batteryDepth)+
+                        row_betweenBattery*6)
+                        )                                       # Depth (glubina) (y)
+        wallLeftHeight = float(batteryHeight+additionalHeight)  # Height (Vysota) (z)
+
+        # Coordinates of the left wall of a box (Koordinaty levoy stenki yashchika)(x, y, z)
+        LeftWall_X = float((-batteryWidth - 
+                     2*row_betweenBattery-
+                     boxThickness)
+                     )
+        LeftWall_Y = float(-row_betweenBattery)
+        LeftWall_Z = float(0.0)
+
+        # Form of the left wall of a box (Forma levoy stenki korobki)
+        boxShapeLTh = Part.makeBox(wallLeftWidth, wallLeftDepth, 
+                      wallLeftHeight, Base.Vector(LeftWall_X, 
+                      LeftWall_Y, LeftWall_Z)
+                      )
+
+        # Turn of the left wall of a box (Povorot levoy steny korobki)
+        boxShapeLTh.rotate(Vector ((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness),(-row_betweenBattery),0),
+                          Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShapeLTh
+
+
+        # Right wall of a box (Pravaya stenka korobki) (x, y, z)
+        wallRightWidth = float(boxThickness)                    # Width (Shirina) (x)
+        wallRightDepth = float((5*(batteryDepth)+ 
+                         row_betweenBattery*6)
+                         )                                      # Depth (glubina) (y)
+        wallRightHeight = float((batteryHeight+
+                          additionalHeight)
+                          )                                     # Height (Vysota) (z)
+
+        # Coordinates of the right wall of a box (Koordinaty pravoy stenki yashchika) (x, y, z)
+        RightWall_X = float(batteryWidth+row_betweenBattery)
+        RightWall_Y = float(-row_betweenBattery)
+        RightWall_Z = float(0.0)
+
+
+        # Form of the right wall of a box (Forma pravoy stenki yashchika)
+        boxShapeRTh = Part.makeBox(wallRightWidth, wallRightDepth, 
+                      wallRightHeight, Base.Vector
+                      (RightWall_X, RightWall_Y, RightWall_Z)
+                      )
+
+        # Turn of the right wall of a box (Povorot pravoy stenki yashchika)
+        boxShapeRTh.rotate(Vector ((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness),(-row_betweenBattery),0),
+                          Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShapeRTh
+
+
+        # Front face of a box (Perednyaya storona korobki) (x, y, z)
+        wallAnteriortWidth = float((2*batteryWidth+
+                            row_betweenBattery*
+                            3 + 2*boxThickness)
+                            )                                   # Width (Shirina) (x)
+        wallAnteriortDepth = float(boxThickness)                # Depth (glubina) (y)
+        wallAnteriortHeight = float((batteryHeight+
+                              additionalHeight)
+                              )                                 # Height (Vysota) (z)
+
+        # Coordinates of a front wall of a box (Koordinaty peredney stenki korobki) (x, y, z)
+        AnteriortWall_X = float((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness)
+                          )
+        AnteriortWall_Y = float((-row_betweenBattery-
+                          boxThickness)
+                          )
+        AnteriortWall_Z = float(0.0)
+
+        # Form of a front wall of a box (Forma peredney stenki korobki)
+        boxShapeATh = Part.makeBox(wallAnteriortWidth, 
+                      wallAnteriortDepth, wallAnteriortHeight, 
+                      Base.Vector(AnteriortWall_X, 
+                      AnteriortWall_Y, 
+                      AnteriortWall_Z)
+                      )
+
+        # Turn of a front wall of a box (Povorot peredney stenki korobki)
+        boxShapeATh.rotate(Vector ((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness),(-row_betweenBattery),0),
+                          Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShapeATh
+
+
+        # Back face of a box (Zadnyaya storona korobki) (x, y, z)
+        wallPosteriorWidth = float((2*batteryWidth+
+                             row_betweenBattery*3 +
+                             2*boxThickness)
+                             )                                   # Width (Shirina) (x)
+        wallPosteriorDepth = float(boxThickness)                 # Depth (glubina) (y)
+        wallPosteriorHeight = float((batteryHeight+
+                              additionalHeight)
+                              )                                  # Height (Vysota) (z)
+
+        # Coordinates of a back wall of a box (Koordinaty zadney stenki yashchika) (x, y, z)
+        PosteriorWall_X = float((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness)
+                          )
+        PosteriorWall_Y = float((5*row_betweenBattery + 
+                          5*batteryDepth)
+                          )
+        PosteriorWall_Z = float(0.0)
+
+        # Form of a back wall of a box (Forma zadney stenki korobki)
+        boxShapePTh = Part.makeBox(wallPosteriorWidth, 
+                      wallPosteriorDepth, wallPosteriorHeight, 
+                      Base.Vector(PosteriorWall_X, 
+                      PosteriorWall_Y, PosteriorWall_Z)
+                      )
+
+        # Turn of a back wall of a box (Povorot zadney stenki yashchika)
+        boxShapePTh.rotate(Vector ((-batteryWidth - 
+                          2*row_betweenBattery-
+                          boxThickness),(-row_betweenBattery),0),
+                          Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShapePTh
+
+
+        # Lower side of a box (Nizhnyaya storona korobki) (x, y, z)
+        wallLowerWidth = float((2*batteryWidth+
+                         row_betweenBattery*3 +
+                         2*boxThickness)
+                         )                                         # Width (Shirina) (x)
+        wallLowerDepth = float(6*row_betweenBattery + 
+                         + 5*batteryDepth + 2*boxThickness
+                         )                                         # Depth (glubina) (y)
+        wallLowerHeight = float(boxThickness)                      # Height (Vysota) (z)
+
+        # Coordinates of the lower wall of a box (Koordinaty nizhney stenki yashchika) (x, y, z)
+        LowerWall_X = float((-batteryWidth - 
+                      2*row_betweenBattery-
+                      boxThickness)
+                      )
+        LowerWall_Y = float((-row_betweenBattery-
+                      boxThickness)
+                      )
+        LowerWall_Z = float(-boxThickness) 
+
+        # Form of the lower wall of a box (Forma nizhney stenki yashchika)
+        boxShapeLoTh = Part.makeBox(wallLowerWidth, 
+                       wallLowerDepth, wallLowerHeight, 
+                       Base.Vector(LowerWall_X, 
+                       LowerWall_Y, LowerWall_Z)
+                       )
+
+        # Turn of the lower wall of a box (Povorot nizhney stenki yashchika)
+        boxShapeLoTh.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShapeLoTh
+
+        # Layouts of a cube for the 1st row (Makety kuba dlya 1-y stroki) (x,y,z)
+        row1_cubeLocation_X = float(0.0)                           # Width (Shirina) (x)
+        row1_cubeLocation_Y = float(batteryDepth)                  # Depth (glubina) (y)
+        row1_cubeLocation_Z = float(0.0)                           # Height (Vysota) (z)
+
+        # Layouts of a cube for the 2nd row (Makety kuba dlya vtoroy stroki) (x, y, z)
+        row2_cubeLocation_X = float((-batteryWidth-
+                              row_betweenBattery)  
+                              )                                    # Width (Shirina) (x)
+        row2_cubeLocation_Y = float(batteryDepth)                  # Depth (glubina) (y)
+        row2_cubeLocation_Z = float(0.0)                           # Height (Vysota) (z)                           
+ 
+
+        # Form of a cube of the 1st row (1) (Forma kuba 1-go ryada (1))
+        boxShape_1_1 = Part.makeBox(batteryWidth,
+                       batteryDepth, batteryHeight, 
+                       Base.Vector(0, 0, 0)
+                       )
+
+        # Turn of a cube of the 1st row, the 2nd cube (Povorot kuba 1-go ryada, 2-y kub)
+        boxShape_1_1.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_1_1
+
+
+        # Form of a cube of the 1st row (2) (Forma kuba 1-go ryada (2))
+        boxShape_1_2 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector
+                       (row1_cubeLocation_X, row1_cubeLocation_Y+
+                       row_betweenBattery, row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 1st row, the 2nd cube (Povorot kuba 1-go ryada, 2-y kub)
+        boxShape_1_2.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_1_2
+
+        # Form of a cube of the 1st row (3) (Forma kuba 1-go ryada (3))
+        boxShape_1_3 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row1_cubeLocation_X, 
+                       2*(row1_cubeLocation_Y)+row_betweenBattery*2, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 1st row, the 3rd cube (Povorot kuba 1-go ryada, 3-go kuba)
+        boxShape_1_3.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_1_3
+
+        # Form of a cube of the 1st row (4) (Forma kuba 1-go ryada (4))
+        boxShape_1_4 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row1_cubeLocation_X, 
+                       3*(row1_cubeLocation_Y)+row_betweenBattery*3, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 1st row, the 4th cube (Povorot kuba 1-go ryada, 4-y kub)
+        boxShape_1_4.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_1_4
+
+        # Form of a cube of the 1st row (5) (Forma kuba 1-go ryada (5))
+        boxShape_1_5 = Part.makeBox(batteryWidth, batteryDepth, 
+                   batteryHeight, Base.Vector(row1_cubeLocation_X, 
+                   4*(row1_cubeLocation_Y)+row_betweenBattery*4, 
+                   row1_cubeLocation_Z)
+                   )
+
+        # Turn of a cube of the 1st row, the 5th cube (Povorot kuba 1-go ryada, 5-y kub)
+        boxShape_1_5.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_1_5
+
+        # Form of a cube of the 2nd row (1) (Forma kuba vtorogo ryada (1))
+        boxShape_2_1 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector
+                       (row2_cubeLocation_X, 0, 0)
+                       )
+
+        # Turn of a cube of the 2nd row, the 1st cube (Povorot kuba 2-go ryada, 1-y kub)
+        boxShape_2_1.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_2_1
+
+        # Form of a cube of the 2nd row (2) (Forma kuba vtorogo ryada (2))
+        boxShape_2_2 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row2_cubeLocation_X, 
+                       row1_cubeLocation_Y+row_betweenBattery, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 2nd row, the 2nd cube (Povorot kuba 2-go ryada, 2-y kub)
+        boxShape_2_2.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_2_2
+
+        # Form of a cube of the 2nd row (3) (Forma kuba vtorogo ryada (3))
+        boxShape_2_3 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row2_cubeLocation_X, 
+                       2*(row1_cubeLocation_Y)+row_betweenBattery*2, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 2nd row, the 3rd cube (Povorot kuba 2-go ryada, 3-go kuba)
+        boxShape_2_3.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form  (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_2_3
+
+        # Form of a cube of the 2nd row (4) (Forma kuba vtorogo ryada (4))
+        boxShape_2_4 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row2_cubeLocation_X, 
+                       3*(row1_cubeLocation_Y)+row_betweenBattery*3, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 2nd row, the 4th cube (Povorot kuba 2-go ryada, 4-y kub)
+        boxShape_2_4.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_2_4
+
+        # Form of a cube of the 2nd row (5) (Forma kuba 2-go ryada (5))
+        boxShape_2_5 = Part.makeBox(batteryWidth, batteryDepth, 
+                       batteryHeight, Base.Vector(row2_cubeLocation_X, 
+                       4*(row1_cubeLocation_Y)+row_betweenBattery*4, 
+                       row1_cubeLocation_Z)
+                       )
+
+        # Turn of a cube of the 2nd row, the 5th cube (Povorot kuba 2-go ryada, 5-y kub)
+        boxShape_2_5.rotate(Vector ((-batteryWidth - 
+                           2*row_betweenBattery-
+                           boxThickness),(-row_betweenBattery),0),
+                           Vector(x, y, z), rotation)
+
+        # Object for display of the form (Ob"yekt dlya otobrazheniya formy)
+        box = document.addObject('Part::Feature', 'Box')
+        box.Shape = boxShape_2_5
+
+class NG(Box):
+    """NG-300 Battery Case0"""
+    def __init__(self, row_betweenBattery, boxThickness, additionalHeight, rotation, x, y, z):
+        Box.__init__(self, 93, 167, 485, row_betweenBattery, boxThickness, additionalHeight, rotation, x, y, z)
+
+NG_300 = NG( 50, 40, 0, 50, 0, 0, 1)
+
+# To switch to the most convenient look (Chtoby pereklyuchit'sya na samyy udobnyy vid)
+Gui.SendMsgToActiveView("ViewFit")
+Gui.activeDocument().activeView().viewAxonometric()
+
+# It is repeted to draw the document (Povtorno narisovat' dokument)
+document.recompute()
+
+"""
+batteryWidth                              # Shirina kuba (dlinna) (x)
+batteryDepth                              # Glubina kuba (shirina)(y)
+batteryHeight                             # Vysota kuba ()(z)
+row_betweenBattery                        # Rasstoyaniye mezhdu batareyami
+boxThickness                              # Tolshchina stenki koroba
+additionalHeight                          # + k vysote stenki koroba ot akkumulyatora
+rotation                                  # Ugol povorota figur
+x, y, z                                   # Os' vrashcheniya otnositel'no x, y ili z sootvetsvtenno
+"""
