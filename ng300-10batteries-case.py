@@ -1,6 +1,4 @@
-# import copy;
 import datetime;
-# import math;
 import Draft;
 import os;
 import Drawing;
@@ -447,14 +445,15 @@ class Box:
 ##############################################################################################
 
         ###
-        partVersion = "1.0";
+        self.partVersion = "1.0";
         ###
-        box1Clone = Draft.clone(box1);
-        box2Clone = Draft.clone(box2);
-        box3Clone = Draft.clone(box3);
-        box4Clone = Draft.clone(box4);
-        box5Clone = Draft.clone(box5);
-        box6Clone = Draft.clone(box5);
+        self.box1Clone = Draft.clone(box1);
+        self.box2Clone = Draft.clone(box2);
+        self.box3Clone = Draft.clone(box3);
+        self.box4Clone = Draft.clone(box4);
+        self.box5Clone = Draft.clone(box5);
+        self.box6Clone = Draft.clone(box5);
+        #
         ###
         boxShapeLTh.rotate(Base.Vector((-batteryWidth - 
                           2*row_betweenBattery-boxThickness),
@@ -477,28 +476,27 @@ class Box:
                           (-row_betweenBattery),0), 
                           Base.Vector(1, 0, 0), -90);
         ###
-        box1Clone.Shape = boxShapeLTh;
-        box2Clone.Shape = boxShapeRTh;
-        box3Clone.Shape = boxShapeATh;
-        box4Clone.Shape = boxShapePTh;
-        box5Clone.Shape = boxShapeLoTh;
-        box6Clone.Shape = boxShapeLoTh;
+        self.box1Clone.Shape = boxShapeLTh;
+        self.box2Clone.Shape = boxShapeRTh;
+        self.box3Clone.Shape = boxShapeATh;
+        self.box4Clone.Shape = boxShapePTh;
+        self.box5Clone.Shape = boxShapeLoTh;
+        self.box6Clone.Shape = boxShapeLoTh;
         ###
-        box1Clone.ViewObject.Visibility = 0;
-        box2Clone.ViewObject.Visibility = 0;
-        box3Clone.ViewObject.Visibility = 0;
-        box4Clone.ViewObject.Visibility = 0;
-        box5Clone.ViewObject.Visibility = 0;
-        box6Clone.ViewObject.Visibility = 0;
+        self.box1Clone.ViewObject.Visibility = 0;
+        self.box2Clone.ViewObject.Visibility = 0;
+        self.box3Clone.ViewObject.Visibility = 0;
+        self.box4Clone.ViewObject.Visibility = 0;
+        self.box5Clone.ViewObject.Visibility = 0;
+        self.box6Clone.ViewObject.Visibility = 0;
         ###
-        shelveGroup.addObject(box1Clone);
-        shelveGroup.addObject(box2Clone);
-        shelveGroup.addObject(box3Clone);
-        shelveGroup.addObject(box4Clone);
-        shelveGroup.addObject(box5Clone);
-        shelveGroup.addObject(box6Clone);
+        shelveGroup.addObject(self.box1Clone);
+        shelveGroup.addObject(self.box2Clone);
+        shelveGroup.addObject(self.box3Clone);
+        shelveGroup.addObject(self.box4Clone);
+        shelveGroup.addObject(self.box5Clone);
+        shelveGroup.addObject(self.box6Clone);
         ###
-
 
         """display3D"""
         # Side part page (Stranitsa chasti storony)
@@ -521,11 +519,11 @@ class Box:
         box5CloneView = document.addObject\
         ('Drawing::FeatureViewPart', 'Display 3D view');
         ###
-        box1CloneView.Source = box1Clone;
-        box2CloneView.Source = box2Clone;
-        box3CloneView.Source = box3Clone;
-        box4CloneView.Source = box4Clone;
-        box5CloneView.Source = box5Clone;
+        box1CloneView.Source = self.box1Clone;
+        box2CloneView.Source = self.box2Clone;
+        box3CloneView.Source = self.box3Clone;
+        box4CloneView.Source = self.box4Clone;
+        box5CloneView.Source = self.box5Clone;
         ###
         box1CloneView.Direction = box2CloneView.Direction =\
         box3CloneView.Direction = box4CloneView.Direction =\
@@ -583,11 +581,11 @@ class Box:
         box4CloneTexts[13] = datetime.datetime.now().strftime("%Y-%m-%d");
         box5CloneTexts[13] = datetime.datetime.now().strftime("%Y-%m-%d");
         # Version (Versiya)
-        box1CloneTexts[14] = partVersion;
-        box2CloneTexts[14] = partVersion;
-        box3CloneTexts[14] = partVersion;
-        box4CloneTexts[14] = partVersion;
-        box5CloneTexts[14] = partVersion;
+        box1CloneTexts[14] = self.partVersion;
+        box2CloneTexts[14] = self.partVersion;
+        box3CloneTexts[14] = self.partVersion;
+        box4CloneTexts[14] = self.partVersion;
+        box5CloneTexts[14] = self.partVersion;
         ###
         box1ClonePage.EditableTexts = box1CloneTexts;
         box2ClonePage.EditableTexts = box2CloneTexts;
@@ -595,115 +593,11 @@ class Box:
         box4ClonePage.EditableTexts = box4CloneTexts;
         box5ClonePage.EditableTexts = box5CloneTexts;
 
+    def display3D(self):
+        return
 
-        """displayRightSide"""
-        # Side part page (Stranitsa chasti storony)
-        box1ClonePage = box2ClonePage = document.addObject\
-        ('Drawing::FeaturePage', 'Display right side');
-        box1ClonePage.Template = box2ClonePage.Template =\
-        os.path.dirname(__file__) + '/A4-Portrait-ISO7200.svg';
-        ###
-        box1CloneView = document.addObject\
-        ('Drawing::FeatureViewPart', 'Display right side view');
-        box2CloneView = document.addObject\
-        ('Drawing::FeatureViewPart', 'Display right side view');
-        ###
-        box1CloneView.Source = box1Clone;
-        box2CloneView.Source = box2Clone;
-        ###
-        box1CloneView.Direction = (1, 0, 0);
-        box1CloneView.X = 180.0;
-        box1CloneView.Y = 150.0;
-        box2CloneView.Direction = (0, 1, 0);
-        box2CloneView.X = 180.0;
-        box2CloneView.Y = 120.0;
-        ###
-        box1CloneView.Scale = box2CloneView.Scale = 0.1; # drawingScale;
-        ###
-        box1ClonePage.addObject(box1CloneView);
-        box2ClonePage.addObject(box2CloneView);
-        # Change page texts (Izmenit' tekst stranitsy)
-        box1CloneTexts = box1ClonePage.EditableTexts;
-        box2CloneTexts = box2ClonePage.EditableTexts;
-        # Author (avtor)
-        box1CloneTexts[0] = "FreeCAD NG300 case";
-        box2CloneTexts[0] = "FreeCAD NG300 case";
-        # Drawing name (Nazvaniye chertezha)
-        box1CloneTexts[1] = "Display right side";
-        box2CloneTexts[1] = "Display right side";
-        # Scale (Masshtab)
-        box1CloneTexts[10] = str(box1CloneView.Scale); # str(drawingScale);
-        box2CloneTexts[10] = str(box2CloneView.Scale); # str(drawingScale);
-        # Drawing (Risovaniye)
-        box1CloneTexts[12] = "2";
-        box2CloneTexts[12] = "2";
-        # Date (Data)
-        box1CloneTexts[13] = datetime.datetime.now().\
-        strftime("%Y-%m-%d");
-        box2CloneTexts[13] = datetime.datetime.now().\
-        strftime("%Y-%m-%d");
-        # Version (Versiya)
-        box1CloneTexts[14] = partVersion;
-        box2CloneTexts[14] = partVersion;
-        ###
-        box1ClonePage.EditableTexts = box1CloneTexts;
-        box2ClonePage.EditableTexts = box2CloneTexts;
+    def displayBottomSide(self):
 
-
-        """displayBackSide"""
-        box3ClonePage = box4ClonePage = document.addObject\
-        ('Drawing::FeaturePage', 'Display back side');
-        box3ClonePage.Template = box4ClonePage.Template =\
-        os.path.dirname(__file__) + '/A4-Portrait-ISO7200.svg';
-        ###
-        box3CloneView = document.addObject\
-        ('Drawing::FeatureViewPart', 'Display back side');
-        box4CloneView = document.addObject\
-        ('Drawing::FeatureViewPart', 'Display back side');
-        ###
-        box3CloneView.Source = box3Clone;
-        box4CloneView.Source = box4Clone;
-        ###
-        box3CloneView.Direction = (1, 0, 0);
-        box3CloneView.X = 110.0;
-        box3CloneView.Y = 60.0;
-        box4CloneView.Direction = (0, 0, 1);
-        box4CloneView.X = 120.0;
-        box4CloneView.Y = 150.0;
-        ###
-        box3CloneView.Scale = box4CloneView.Scale = 0.2; # drawingScale;
-        ###
-        box3ClonePage.addObject(box3CloneView);
-        box4ClonePage.addObject(box4CloneView);
-        # Change page texts (Izmenit' tekst stranitsy)
-        box3CloneTexts = box3ClonePage.EditableTexts;
-        box4CloneTexts = box4ClonePage.EditableTexts;
-        # Author (avtor)
-        box3CloneTexts[0] = "FreeCAD NG300 case";
-        box4CloneTexts[0] = "FreeCAD NG300 case";
-        # Drawing name (Nazvaniye chertezha)
-        box3CloneTexts[1] = "Display back side";
-        box4CloneTexts[1] = "Display back side";
-        # Scale (Masshtab)
-        box3CloneTexts[10] = str(box3CloneView.Scale); # str(drawingScale);
-        box4CloneTexts[10] = str(box4CloneView.Scale); # str(drawingScale);
-        # Drawing (Risovaniye)
-        box3CloneTexts[12] = "2";
-        box4CloneTexts[12] = "2";
-        # Date (Data)
-        box3CloneTexts[13] = datetime.datetime.now().\
-        strftime("%Y-%m-%d");
-        box4CloneTexts[13] = datetime.datetime.now().\
-        strftime("%Y-%m-%d");
-        # Version (Versiya)
-        box3CloneTexts[14] = partVersion;
-        box4CloneTexts[14] = partVersion;
-        ###
-        box3ClonePage.EditableTexts = box3CloneTexts;
-        box4ClonePage.EditableTexts = box4CloneTexts;
-
-
-        """displayBottomSide"""
         # Side part page (Stranitsa chasti storony)
         box5ClonePage = box6ClonePage = document.addObject\
         ('Drawing::FeaturePage', 'Display bottom side');
@@ -717,8 +611,8 @@ class Box:
         box6CloneView = document.addObject\
         ('Drawing::FeatureViewPart', 'Display bottom side view');
         ###
-        box5CloneView.Source = box5Clone;
-        box6CloneView.Source = box6Clone;
+        box5CloneView.Source = self.box5Clone;
+        box6CloneView.Source = self.box6Clone;
         ###
         box5CloneView.Direction =  (0, 1, 0);
         box5CloneView.X = 185.0;
@@ -753,23 +647,118 @@ class Box:
         box6CloneTexts[13] = datetime.datetime.now().\
         strftime("%Y-%m-%d")
         # Version (Versiya)
-        box5CloneTexts[14] = partVersion;
-        box6CloneTexts[14] = partVersion;
+        box5CloneTexts[14] = self.partVersion;
+        box6CloneTexts[14] = self.partVersion;
         ###
         box5ClonePage.EditableTexts = box5CloneTexts;
         box6ClonePage.EditableTexts = box6CloneTexts;
 
-    def display3D(self):
-        return
-
-    def displayBottomSide(self):
-        return
-
     def displayRightSide(self):
-        return
+
+        # Side part page (Stranitsa chasti storony)
+        box1ClonePage = box2ClonePage = document.addObject\
+        ('Drawing::FeaturePage', 'Display right side');
+        box1ClonePage.Template = box2ClonePage.Template =\
+        os.path.dirname(__file__) + '/A4-Portrait-ISO7200.svg';
+        ###
+        box1CloneView = document.addObject\
+        ('Drawing::FeatureViewPart', 'Display right side view');
+        box2CloneView = document.addObject\
+        ('Drawing::FeatureViewPart', 'Display right side view');
+        ###
+        box1CloneView.Source = self.box1Clone;
+        box2CloneView.Source = self.box2Clone;
+        ###
+        box1CloneView.Direction = (1, 0, 0);
+        box1CloneView.X = 180.0;
+        box1CloneView.Y = 150.0;
+        box2CloneView.Direction = (0, 1, 0);
+        box2CloneView.X = 180.0;
+        box2CloneView.Y = 120.0;
+        ###
+        box1CloneView.Scale = box2CloneView.Scale = 0.1; # drawingScale;
+        ###
+        box1ClonePage.addObject(box1CloneView);
+        box2ClonePage.addObject(box2CloneView);
+        # Change page texts (Izmenit' tekst stranitsy)
+        box1CloneTexts = box1ClonePage.EditableTexts;
+        box2CloneTexts = box2ClonePage.EditableTexts;
+        # Author (avtor)
+        box1CloneTexts[0] = "FreeCAD NG300 case";
+        box2CloneTexts[0] = "FreeCAD NG300 case";
+        # Drawing name (Nazvaniye chertezha)
+        box1CloneTexts[1] = "Display right side";
+        box2CloneTexts[1] = "Display right side";
+        # Scale (Masshtab)
+        box1CloneTexts[10] = str(box1CloneView.Scale); # str(drawingScale);
+        box2CloneTexts[10] = str(box2CloneView.Scale); # str(drawingScale);
+        # Drawing (Risovaniye)
+        box1CloneTexts[12] = "2";
+        box2CloneTexts[12] = "2";
+        # Date (Data)
+        box1CloneTexts[13] = datetime.datetime.now().\
+        strftime("%Y-%m-%d");
+        box2CloneTexts[13] = datetime.datetime.now().\
+        strftime("%Y-%m-%d");
+        # Version (Versiya)
+        box1CloneTexts[14] = self.partVersion;
+        box2CloneTexts[14] = self.partVersion;
+        ###
+        box1ClonePage.EditableTexts = box1CloneTexts;
+        box2ClonePage.EditableTexts = box2CloneTexts;
 
     def displayBackSide(self):
-        return        
+
+        box3ClonePage = box4ClonePage = document.addObject\
+        ('Drawing::FeaturePage', 'Display back side');
+        box3ClonePage.Template = box4ClonePage.Template =\
+        os.path.dirname(__file__) + '/A4-Portrait-ISO7200.svg';
+        ###
+        box3CloneView = document.addObject\
+        ('Drawing::FeatureViewPart', 'Display back side');
+        box4CloneView = document.addObject\
+        ('Drawing::FeatureViewPart', 'Display back side');
+        ###
+        box3CloneView.Source = self.box3Clone;
+        box4CloneView.Source = self.box4Clone;
+        ###
+        box3CloneView.Direction = (1, 0, 0);
+        box3CloneView.X = 110.0;
+        box3CloneView.Y = 60.0;
+        box4CloneView.Direction = (0, 0, 1);
+        box4CloneView.X = 120.0;
+        box4CloneView.Y = 150.0;
+        ###
+        box3CloneView.Scale = box4CloneView.Scale = 0.2; # drawingScale;
+        ###
+        box3ClonePage.addObject(box3CloneView);
+        box4ClonePage.addObject(box4CloneView);
+        # Change page texts (Izmenit' tekst stranitsy)
+        box3CloneTexts = box3ClonePage.EditableTexts;
+        box4CloneTexts = box4ClonePage.EditableTexts;
+        # Author (avtor)
+        box3CloneTexts[0] = "FreeCAD NG300 case";
+        box4CloneTexts[0] = "FreeCAD NG300 case";
+        # Drawing name (Nazvaniye chertezha)
+        box3CloneTexts[1] = "Display back side";
+        box4CloneTexts[1] = "Display back side";
+        # Scale (Masshtab)
+        box3CloneTexts[10] = str(box3CloneView.Scale); # str(drawingScale);
+        box4CloneTexts[10] = str(box4CloneView.Scale); # str(drawingScale);
+        # Drawing (Risovaniye)
+        box3CloneTexts[12] = "2";
+        box4CloneTexts[12] = "2";
+        # Date (Data)
+        box3CloneTexts[13] = datetime.datetime.now().\
+        strftime("%Y-%m-%d");
+        box4CloneTexts[13] = datetime.datetime.now().\
+        strftime("%Y-%m-%d");
+        # Version (Versiya)
+        box3CloneTexts[14] = self.partVersion;
+        box4CloneTexts[14] = self.partVersion;
+        ###
+        box3ClonePage.EditableTexts = box3CloneTexts;
+        box4ClonePage.EditableTexts = box4CloneTexts;     
 
 ##############################################################################################
 
@@ -783,6 +772,9 @@ class NG(Box):
                      x, y, z, scale_by_x, scale_by_y, scale_by_z)
 
 NG_300 = NG(50, 40, 0, 0, 0, 0, 1, 1, 1, 1)
+NG_300.displayBottomSide()
+NG_300.displayBackSide()
+NG_300.displayRightSide()
 
 # 835, 547, 485
 
