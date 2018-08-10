@@ -7,14 +7,13 @@ import Drawing;
 import Part;
 from FreeCAD import Base;
 
-
-
 # Sodaniye of the document with a name (Sodaniye dokumenta s imenem)
 document = App.newDocument('FreeCAD NG300 case')
 
 shelveGroup = document.addObject("App::DocumentObjectGroup", "Shelve");
 
 class Box:
+
     """ My box with batteries"""
     def __init__(self, batteryWidth, batteryDepth, 
                 batteryHeight, row_betweenBattery, 
@@ -759,6 +758,18 @@ class Box:
         ###
         box5ClonePage.EditableTexts = box5CloneTexts;
         box6ClonePage.EditableTexts = box6CloneTexts;
+
+    def display3D(self):
+        return
+
+    def displayBottomSide(self):
+        return
+
+    def displayRightSide(self):
+        return
+
+    def displayBackSide(self):
+        return        
 
 ##############################################################################################
 
