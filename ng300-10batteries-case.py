@@ -440,8 +440,6 @@ class Box:
         box = document.addObject('Part::Feature', 'Box')
         box.Shape = boxShape_2_5
 
-
-
 ##############################################################################################
 
         ###
@@ -453,7 +451,6 @@ class Box:
         self.box4Clone = Draft.clone(box4);
         self.box5Clone = Draft.clone(box5);
         self.box6Clone = Draft.clone(box5);
-        #
         ###
         boxShapeLTh.rotate(Base.Vector((-batteryWidth - 
                           2*row_betweenBattery-boxThickness),
@@ -498,7 +495,8 @@ class Box:
         shelveGroup.addObject(self.box6Clone);
         ###
 
-        """display3D"""
+    def display3D(self):
+
         # Side part page (Stranitsa chasti storony)
         box1ClonePage = box2ClonePage = box3ClonePage =\
         box4ClonePage = box5ClonePage = document.addObject\
@@ -530,14 +528,14 @@ class Box:
         box5CloneView.Direction = (1, 1, 1);
         ###
         box1CloneView.X = box2CloneView.X = box3CloneView.X =\
-        box4CloneView.X = box5CloneView.X = 75.0;
+        box4CloneView.X = box5CloneView.X = 80.0;
         ###
         box1CloneView.Y = box2CloneView.Y = box3CloneView.Y =\
-        box4CloneView.Y = box5CloneView.Y = 130.0;
+        box4CloneView.Y = box5CloneView.Y = 160.0;
         ###
         box1CloneView.Scale = box2CloneView.Scale =\
         box3CloneView.Scale = box4CloneView.Scale =\
-        box5CloneView.Scale = 0.08; # drawingScale;
+        box5CloneView.Scale = 0.12; # drawingScale;
         ###
         box1ClonePage.addObject(box1CloneView);
         box2ClonePage.addObject(box2CloneView);
@@ -593,8 +591,6 @@ class Box:
         box4ClonePage.EditableTexts = box4CloneTexts;
         box5ClonePage.EditableTexts = box5CloneTexts;
 
-    def display3D(self):
-        return
 
     def displayBottomSide(self):
 
@@ -615,11 +611,11 @@ class Box:
         box6CloneView.Source = self.box6Clone;
         ###
         box5CloneView.Direction =  (0, 1, 0);
-        box5CloneView.X = 185.0;
-        box5CloneView.Y = 160.0;
+        box5CloneView.X = 160.0;
+        box5CloneView.Y = 150.0;
         box6CloneView.Direction =  (1, 0, 0);
-        box6CloneView.X = 185.0;
-        box6CloneView.Y = 90.0;
+        box6CloneView.X = 160.0;
+        box6CloneView.Y = 80.0;
         ###
         box5CloneView.Scale = box6CloneView.Scale = 0.1; # drawingScale;
         ###
@@ -632,7 +628,6 @@ class Box:
         box5CloneTexts[0] = "FreeCAD NG300 case";
         box6CloneTexts[0] = "FreeCAD NG300 case";
         # Drawing name (Nazvaniye chertezha)
-
         box5CloneTexts[1] = "Display bottom side";
         box6CloneTexts[1] = "Display bottom side";
         # Scale (Masshtab)
@@ -652,6 +647,7 @@ class Box:
         ###
         box5ClonePage.EditableTexts = box5CloneTexts;
         box6ClonePage.EditableTexts = box6CloneTexts;
+        ###
 
     def displayRightSide(self):
 
@@ -670,11 +666,11 @@ class Box:
         box2CloneView.Source = self.box2Clone;
         ###
         box1CloneView.Direction = (1, 0, 0);
-        box1CloneView.X = 180.0;
-        box1CloneView.Y = 150.0;
+        box1CloneView.X = 160.0;
+        box1CloneView.Y = 130.0;
         box2CloneView.Direction = (0, 1, 0);
-        box2CloneView.X = 180.0;
-        box2CloneView.Y = 120.0;
+        box2CloneView.X = 160.0;
+        box2CloneView.Y = 80.0;
         ###
         box1CloneView.Scale = box2CloneView.Scale = 0.1; # drawingScale;
         ###
@@ -723,10 +719,10 @@ class Box:
         box4CloneView.Source = self.box4Clone;
         ###
         box3CloneView.Direction = (1, 0, 0);
-        box3CloneView.X = 110.0;
-        box3CloneView.Y = 60.0;
+        box3CloneView.X = 75.0;
+        box3CloneView.Y = 52.75;
         box4CloneView.Direction = (0, 0, 1);
-        box4CloneView.X = 120.0;
+        box4CloneView.X = 140.0;
         box4CloneView.Y = 150.0;
         ###
         box3CloneView.Scale = box4CloneView.Scale = 0.2; # drawingScale;
@@ -767,16 +763,16 @@ class NG(Box):
     def __init__(self, row_betweenBattery, boxThickness, 
                  additionalHeight, rotation, x, y, z,
                  scale_by_x, scale_by_y, scale_by_z):
-        Box.__init__(self, 150, 200, 150, row_betweenBattery, 
+        Box.__init__(self, 95, 167, 490, row_betweenBattery, 
                      boxThickness, additionalHeight, rotation, 
                      x, y, z, scale_by_x, scale_by_y, scale_by_z)
 
-NG_300 = NG(50, 40, 0, 0, 0, 0, 1, 1, 1, 1)
+NG_300 = NG(2, 20, 0, 0, 0, 0, 1, 1, 1, 1)
+NG_300.display3D()
 NG_300.displayBottomSide()
 NG_300.displayBackSide()
 NG_300.displayRightSide()
 
-# 835, 547, 485
 
 # To switch to the most convenient look (Chtoby pereklyuchit'sya na samyy udobnyy vid)
 Gui.SendMsgToActiveView("ViewFit")
