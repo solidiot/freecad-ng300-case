@@ -1,3 +1,4 @@
+
 import datetime;
 import Draft;
 import os;
@@ -10,7 +11,7 @@ document = App.newDocument('FreeCAD NG300 case')
 
 shelveGroup = document.addObject("App::DocumentObjectGroup", "Shelve");
 
-class Box:
+class TenBatteriesCase:
 
     """ My box with batteries"""
     def __init__(self, batteryWidth, batteryDepth, 
@@ -590,7 +591,7 @@ class Box:
         box3ClonePage.EditableTexts = box3CloneTexts;
         box4ClonePage.EditableTexts = box4CloneTexts;
         box5ClonePage.EditableTexts = box5CloneTexts;
-
+        ###
 
     def displayBottomSide(self):
 
@@ -702,6 +703,7 @@ class Box:
         ###
         box1ClonePage.EditableTexts = box1CloneTexts;
         box2ClonePage.EditableTexts = box2CloneTexts;
+        ###
 
     def displayBackSide(self):
 
@@ -758,21 +760,20 @@ class Box:
 
 ##############################################################################################
 
-class NG(Box):
+class NG300BatteryCase(TenBatteriesCase):
     """NG-300 Battery Case0"""
     def __init__(self, row_betweenBattery, boxThickness, 
                  additionalHeight, rotation, x, y, z,
                  scale_by_x, scale_by_y, scale_by_z):
-        Box.__init__(self, 95, 167, 490, row_betweenBattery, 
-                     boxThickness, additionalHeight, rotation, 
-                     x, y, z, scale_by_x, scale_by_y, scale_by_z)
+        TenBatteriesCase.__init__(self, 95, 167, 490, row_betweenBattery, 
+                                 boxThickness, additionalHeight, rotation, 
+                                 x, y, z, scale_by_x, scale_by_y, scale_by_z)
 
-NG_300 = NG(2, 20, 0, 0, 0, 0, 1, 1, 1, 1)
-NG_300.display3D()
-NG_300.displayBottomSide()
-NG_300.displayBackSide()
-NG_300.displayRightSide()
-
+battery = NG300BatteryCase(2, 20, 0, 0, 0, 0, 1, 1, 1, 1)
+battery.display3D()
+battery.displayBottomSide()
+battery.displayBackSide()
+battery.displayRightSide()
 
 # To switch to the most convenient look (Chtoby pereklyuchit'sya na samyy udobnyy vid)
 Gui.SendMsgToActiveView("ViewFit")
