@@ -41,7 +41,8 @@ class TenBatteriesCase:
         wallLeftDepth = float((5*(batteryDepth)+
                         row_betweenBattery*6)
                         )                                       # Depth (glubina) (y)
-        wallLeftHeight = float(batteryHeight+additionalHeight)  # Height (Vysota) (z)
+        wallLeftHeight = float(batteryHeight+additionalHeight
+                         -150)                                  # Height (Vysota) (z)
 
         # Coordinates of the left wall of a box (Koordinaty levoy stenki yashchika)(x, y, z)
         LeftWall_X = float((-batteryWidth - 
@@ -77,7 +78,7 @@ class TenBatteriesCase:
                          row_betweenBattery*6)
                          )                                      # Depth (glubina) (y)
         wallRightHeight = float((batteryHeight+
-                          additionalHeight)
+                          additionalHeight-150)
                           )                                     # Height (Vysota) (z)
 
         # Coordinates of the right wall of a box (Koordinaty pravoy stenki yashchika) (x, y, z)
@@ -113,7 +114,7 @@ class TenBatteriesCase:
                             )                                   # Width (Shirina) (x)
         wallAnteriortDepth = float(boxThickness)                # Depth (glubina) (y)
         wallAnteriortHeight = float((batteryHeight+
-                              additionalHeight)
+                              additionalHeight-150)
                               )                                 # Height (Vysota) (z)
 
         # Coordinates of a front wall of a box (Koordinaty peredney stenki korobki) (x, y, z)
@@ -155,7 +156,7 @@ class TenBatteriesCase:
                              )                                   # Width (Shirina) (x)
         wallPosteriorDepth = float(boxThickness)                 # Depth (glubina) (y)
         wallPosteriorHeight = float((batteryHeight+
-                              additionalHeight)
+                              additionalHeight-150)
                               )                                  # Height (Vysota) (z)
 
         # Coordinates of a back wall of a box (Koordinaty zadney stenki yashchika) (x, y, z)
@@ -635,8 +636,8 @@ class TenBatteriesCase:
         box5CloneTexts[10] = str(box5CloneView.Scale); # str(drawingScale);
         box6CloneTexts[10] = str(box6CloneView.Scale); # str(drawingScale);
         # Drawing (Risovaniye)
-        box5CloneTexts[12] = "4";
-        box6CloneTexts[12] = "4";
+        box5CloneTexts[12] = "2";
+        box6CloneTexts[12] = "2";
         # Date (Data)
         box5CloneTexts[13] = datetime.datetime.now().\
         strftime("%Y-%m-%d");
@@ -690,8 +691,8 @@ class TenBatteriesCase:
         box1CloneTexts[10] = str(box1CloneView.Scale); # str(drawingScale);
         box2CloneTexts[10] = str(box2CloneView.Scale); # str(drawingScale);
         # Drawing (Risovaniye)
-        box1CloneTexts[12] = "2";
-        box2CloneTexts[12] = "2";
+        box1CloneTexts[12] = "3";
+        box2CloneTexts[12] = "3";
         # Date (Data)
         box1CloneTexts[13] = datetime.datetime.now().\
         strftime("%Y-%m-%d");
@@ -721,8 +722,8 @@ class TenBatteriesCase:
         box4CloneView.Source = self.box4Clone;
         ###
         box3CloneView.Direction = (1, 0, 0);
-        box3CloneView.X = 75.0;
-        box3CloneView.Y = 52.75;
+        box3CloneView.X = 50;
+        box3CloneView.Y = 94;
         box4CloneView.Direction = (0, 0, 1);
         box4CloneView.X = 140.0;
         box4CloneView.Y = 150.0;
@@ -744,8 +745,8 @@ class TenBatteriesCase:
         box3CloneTexts[10] = str(box3CloneView.Scale); # str(drawingScale);
         box4CloneTexts[10] = str(box4CloneView.Scale); # str(drawingScale);
         # Drawing (Risovaniye)
-        box3CloneTexts[12] = "2";
-        box4CloneTexts[12] = "2";
+        box3CloneTexts[12] = "4";
+        box4CloneTexts[12] = "4";
         # Date (Data)
         box3CloneTexts[13] = datetime.datetime.now().\
         strftime("%Y-%m-%d");
@@ -765,11 +766,11 @@ class NG300BatteryCase(TenBatteriesCase):
     def __init__(self, row_betweenBattery, boxThickness, 
                  additionalHeight, rotation, x, y, z,
                  scale_by_x, scale_by_y, scale_by_z):
-        TenBatteriesCase.__init__(self, 95, 167, 490, row_betweenBattery, 
+        TenBatteriesCase.__init__(self, 170, 155, 470, row_betweenBattery, 
                                  boxThickness, additionalHeight, rotation, 
                                  x, y, z, scale_by_x, scale_by_y, scale_by_z)
 
-battery = NG300BatteryCase(2, 20, 0, 0, 0, 0, 1, 1, 1, 1)
+battery = NG300BatteryCase(20, 18, 0, 0, 0, 0, 1, 1, 1, 1)
 battery.display3D()
 battery.displayBottomSide()
 battery.displayBackSide()
