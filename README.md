@@ -36,22 +36,22 @@ freecad-ng300-case
 * маштабирования короба с аккумуляторами относительно оси x, y, z (scale_by_x, scale_by_y, scale_by_z).
 Чертежи короба с десятью аккумуляторами ТНЖ-300ВМП-У2, а так же 3D модель короба представлены ниже на рисунках 1.1, 1.2, 1.3, 1.4 и 1.5.
 
-![]()
+![](https://github.com/solidiot/freecad-ng300-case/blob/master/Display%203D.png)
 
 Рис. 1.1 – гланый вид чертежа короба для аккумулятора ТНЖ-300ВМП-У2
 
-![]()
+![](https://github.com/solidiot/freecad-ng300-case/blob/master/Display%20bottom%20side.png)
 
-Рис. 1.2 –  левая (правая) боковая стенка короба для аккумулятора ТНЖ-300ВМП-У2
+Рис. 1.2 –  передняя (задняя) стенка короба для аккумулятора ТНЖ-300ВМП-У2 
 
-![]()                           
+![](https://github.com/solidiot/freecad-ng300-case/blob/master/Display%20back%20side.png)                           
 
-Рис. 1.3 –  передняя (задняя) стенка короба для аккумулятора ТНЖ-300ВМП-У2
+Рис. 1.3 –  левая (правая) боковая стенка короба для аккумулятора ТНЖ-300ВМП-У2
 
-![]()
+![](https://github.com/solidiot/freecad-ng300-case/blob/master/Display%20right%20side.png)
 
 Рис. 1.4 –  нижняя стенка короба для аккумулятора ТНЖ-300ВМП-У2
 
-![]()
+![](https://github.com/solidiot/freecad-ng300-case/blob/master/ng300-10batteries-case.png)
 
 Рис. 1.5 –  3D модель короба для аккумулятора ТНЖ-300ВМП-У2
