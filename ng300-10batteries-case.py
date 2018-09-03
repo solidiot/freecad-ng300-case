@@ -766,7 +766,7 @@ class NG300BatteryCase(TenBatteriesCase):
     def __init__(self, row_betweenBattery, boxThickness, 
                  additionalHeight, rotation, x, y, z,
                  scale_by_x, scale_by_y, scale_by_z):
-        TenBatteriesCase.__init__(self, 170, 155, 470, row_betweenBattery, 
+        TenBatteriesCase.__init__(self, 170, 135, 470, row_betweenBattery, 
                                  boxThickness, additionalHeight, rotation, 
                                  x, y, z, scale_by_x, scale_by_y, scale_by_z)
 
