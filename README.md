@@ -40,7 +40,7 @@ freecad-ng300-case
 
 Рис. 1.1 – гланый вид чертежа короба для аккумулятора ТНЖ-300ВМП-У2
 
-![](https://github.com/DmitriyPro/freecad-ng300-case/blob/master/Display%20bottom%20side.png)
+![](https://github.com/DmitriyPro/freecad-ng300-case/blob/master/Display%20back%20side.png)
 
 Рис. 1.2 –  передняя (задняя) стенка короба для аккумулятора ТНЖ-300ВМП-У2 
 
@@ -48,7 +48,7 @@ freecad-ng300-case
 
 Рис. 1.3 –  левая (правая) боковая стенка короба для аккумулятора ТНЖ-300ВМП-У2
 
-![](https://github.com/DmitriyPro/freecad-ng300-case/blob/master/Display%20back%20side.png)
+![](https://github.com/DmitriyPro/freecad-ng300-case/blob/master/Display%20bottom%20side.png)
 
 Рис. 1.4 –  нижняя стенка короба для аккумулятора ТНЖ-300ВМП-У2
 
